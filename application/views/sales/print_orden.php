@@ -4,7 +4,7 @@
 	$importe_total=0;
 ?>
 
-<table style="width:80%;  border-spacing: 10px;    border-collapse: separate; color: #72324a;">
+<table style="width:100%;  border-spacing: 10px;    border-collapse: separate; color: #72324a;">
 	<tr style="border:2px solid #72324a !important; margin:0px auto;">
 		<td colspan=3 style="border:2px solid #72324a !important; margin:0px auto; border-radius: 10px;  text-align:center ">
 			<h1 style="font-size:55px !important; text-align:center; width:100%; padding-botton:0px;">

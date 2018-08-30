@@ -52,7 +52,7 @@
                         $('#print_order_modal').modal('show');
                     */
                     WaitingClose();
-                    var url = "./assets/reports/orders_minorista/" + result;
+                    var url = "./assets/reports/comprobantes/" + result;
                     $('#printDoc').attr('src', url);
                     setTimeout("$('#modalPrint').modal('show')",800);
                 },

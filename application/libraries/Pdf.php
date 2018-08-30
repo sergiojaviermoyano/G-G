@@ -60,8 +60,14 @@ protected function ci()
     }
 
     public function generate_pdf($view, $data = array()){
-        $file_directory=ASSETS.'reports/orders_minorista';
+
         
+        $file_directory=ASSETS.'reports';        
+		if(!is_dir($file_directory)){
+			mkdir($file_directory);			
+        }
+
+        $file_directory.='/comprobantes';        
 		if(!is_dir($file_directory)){
 			mkdir($file_directory);			
         }
@@ -73,7 +79,7 @@ protected function ci()
         //echo utf8_decode($html);
         //die("antes");
 
-        $html=' <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body><h1>Codeigniter 3 - Generate PDF from view using dompdf library with example</h1><table style="border:1px solid red;width:100%;">	<tr>		<th style="border:1px solid red">Id</th>		<th style="border:1px solid red">Name</th>		<th style="border:1px solid red">Email</th>	</tr>	<tr>		<td style="border:1px solid red">1</td>		<td style="border:1px solid red">Hardik</td>		<td style="border:1px solid red">hardik@gmail.com</td>	</tr>	<tr>		<td style="border:1px solid red">2</td>		<td style="border:1px solid red">Paresh</td>		<td style="border:1px solid red">paresh@gmail.com</td></tr></table></body></html>';
+        //$html=' <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body><h1>Codeigniter 3 - Generate PDF from view using dompdf library with example</h1><table style="border:1px solid red;width:100%;">	<tr>		<th style="border:1px solid red">Id</th>		<th style="border:1px solid red">Name</th>		<th style="border:1px solid red">Email</th>	</tr>	<tr>		<td style="border:1px solid red">1</td>		<td style="border:1px solid red">Hardik</td>		<td style="border:1px solid red">hardik@gmail.com</td>	</tr>	<tr>		<td style="border:1px solid red">2</td>		<td style="border:1px solid red">Paresh</td>		<td style="border:1px solid red">paresh@gmail.com</td></tr></table></body></html>';
         //echo utf8_decode($html);
         //die();
         $dompdf->load_html(utf8_decode($html));
@@ -81,7 +87,7 @@ protected function ci()
         //$dompdf->loadHtml(utf8_encode("<h1>Señor CARACTER</h1>"));
         
         // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4');//, 'portrains');
+        $dompdf->setPaper('A5');//, 'portrains');
         // Render the HTML as PDF
        // var_dump($dompdf->loadHtml);
         //die("NFIN");
@@ -100,13 +106,13 @@ protected function ci()
             
             file_put_contents($file_directory.'/'.$file_name, $output);
             
-            echo './assets/reports/orders_minorista/'.$file_name;
-            die("FIN");
+            return './assets/reports/comprobantes/'.$file_name;
+            
         } catch(Exception $e) {
             echo 'Excepción capturada: ',  $e->getMessage(), "\n";
             // Do something here with $e and notify the user of the error in whatever way you see fit
         }
-        die("FIN fin");
+        
 		
     }
 
