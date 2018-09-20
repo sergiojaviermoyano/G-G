@@ -42,7 +42,7 @@ class article extends CI_Controller {
 	}
 	public function getArticle(){
 
-		$rubros=$this->Rubros->SubRubro_List();
+		$rubros=$this->Rubros->Rubro_List();
 		$marcas=$this->Brands->Brand_list();
 
 		$ivaAliCuotas=$this->IvaAliCuotas->Iva_List();

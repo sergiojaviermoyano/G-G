@@ -174,16 +174,10 @@
       error_message += " * Por Favor, debe Ingresar Costo. <br> ";
     }
 
-    if($('#artMarginMayorista').val() == '')
-    {
-      hayError = true;
-      error_message += " * Por Favor, debe Ingresar Margen Mayorista. <br> ";
-    }
-
     if($('#artMarginMinorista').val() == '')
     {
       hayError = true;
-      error_message += " * Por Favor, debe Ingresar Margen Minorista. <br> ";
+      error_message += " * Por Favor, debe Ingresar Margen. <br> ";
     }
 
     if($('#marcaId').val() == ''){
@@ -191,10 +185,10 @@
       error_message += " * Por Favor, debe Seleccionar una Marca. <br> ";
     }
 
-    if($('#subrId').val() == '')
+    if($('#rubId').val() == '')
     {
       hayError = true;
-      error_message += " * Por Favor, debe Seleccionar un Sub Rubro. <br> ";
+      error_message += " * Por Favor, debe Seleccionar un Rubro. <br> ";
 
     }
 
@@ -221,14 +215,14 @@
                     act:      acArt,
                     code:     $('#artBarCode').val(),
                     name:     $('#artDescription').val(),
-                    margma:   $('#artMarginMayorista').val(),
+                    margma:   0,
                     margmi:   $('#artMarginMinorista').val(),
-                    margPma:  $('#artMarginMayoristaIsPorcent').prop('checked'),
+                    margPma:  0,
                     margPmi:  $('#artMarginMinoristaIsPorcent').prop('checked'),
                     price:    $('#artCoste').val(),
-                    priceIsD: $('#artCosteIsDolar').prop('checked'),
+                    priceIsD: 0,
                     status:   $('#artEstado').val(),
-                    subrId:   $("#subrId").val(),
+                    rubId:    $("#rubId").val(),
                     marcaId:  $("#marcaId").val(),
                     artMinimo:   $("#artMinimo").val()
                   },

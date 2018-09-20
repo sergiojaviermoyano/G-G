@@ -29,13 +29,13 @@
         <input type="text" class="form-control" id="artCoste" value="<?php echo $data['article']['artCoste'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  >
       </div>
 			<?php if ($data['read'] == 'X'){ ?> <!--//if ($data['read'] == 'false'){ ?>-->
-			<div class="col-sm-1">
+			<div class="col-sm-1" style="display:none;">
 				<button class="btn btn-block btn-warning" style="width:50px; padding: 5px 0px;" onclick="sumar(21)">21%</button>
 			</div>
-			<div class="col-sm-1">
+			<div class="col-sm-1" style="display:none;">
 				<button class="btn btn-block btn-success" style="width:50px; padding: 5px 0px;" onclick="sumar(10.5)">10.5%</button>
 			</div>
-		<?php } ?>
+		  <?php } ?>
 			<label class="col-sm-2" style="display:none;"> Es Dolar <strong style="color: #dd4b39">*</strong>: </label>
 			<div class="col-sm-1" style="display:none;">
             <input type="checkbox" id="artCosteIsDolar" style="margin-top:10px;" <?php echo($data['article']['artCosteIsDolar'] == true ? 'checked': ''); ?> <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
@@ -69,17 +69,18 @@
 		</div>
 
     <div class="form-group">
-			<label class="col-sm-4" style="display:none;"> Cotización Dolar</label>
+			<!--<label class="col-sm-4" style="display:none;"> Cotización Dolar</label>-->
       <label class="col-sm-4"> Precio Venta:  </label>
-			<label class="col-sm-4" style="display:none;"> Precio Venta Mayorista:  </label>
+      <label class="col-sm-4"> $ <strong id="pventaMinorista" style="color: green; font-size: 20px;">0.00</strong> </label>
+			<!--<label class="col-sm-4" style="display:none;"> Precio Venta Mayorista:  </label>-->
     </div>
 
-		<div class="form-group">
-			<div class="col-sm-4" style="display:none;">
+		<div class="form-group" style="display:none;">
+			<div class="col-sm-4" >
         <input type="text" id="cotizacionDolar" class="form-control has-success" value="<?php echo $data['cotizacionDolar'];?>" disabled="disabled">
       </div>
 			<div class="col-sm-4">
-        <strong id="pventaMinorista" style="color: green">0.00</strong>
+        <!--<strong id="pventaMinorista" style="color: green">0.00</strong>-->
       </div>
       <div class="col-sm-4" style="display:none;">
         <strong id="pventaMayorista">0.00</strong>
@@ -97,14 +98,13 @@
 					</select>
 				</div>
 			</div>
-
     <div class="form-group">
-         <label class="col-sm-4"> Sub-rubro <strong style="color: #dd4b39">*</strong></label>
+         <label class="col-sm-4"> Rubro <strong style="color: #dd4b39">*</strong></label>
         <div class="col-sm-5">
-          <select class="form-control" name="subrId" id="subrId" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>>
-            <option value="">Seleccionar Sub-rubro</option>
+          <select class="form-control" name="subrId" id="rubId" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>>
+            <option value="">Seleccionar Rubro</option>
             <?php foreach ($rubros as $key => $item):?>
-              <option value="<?php echo $item['subrId'];?>" <?php echo ($data['article']['subrId']==$item['subrId'])?'selected':''?> ><?php //echo $item['rubDescripcion'];?> <?php echo $item['subrDescripcion'];?></option>
+              <option value="<?php echo $item['rubId'];?>" <?php echo ($data['article']['rubId']==$item['rubId'])?'selected':''?> ><?php echo $item['rubDescripcion'];?></option>
             <?php endforeach;?>
           </select>
         </div>

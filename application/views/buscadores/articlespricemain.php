@@ -78,7 +78,7 @@ function BuscarArticlePriceMain(){
                                   row___Main += '<td style="text-align: right"> $ ' + calcularPrecioInternoMain(result).toFixed(2) + '</td>';
                                   row___Main += '<td style="display: none">'+result.artId+'</td>';
                                   row___Main += '<td style="text-align: right">'+(result.stock == null ? '0.00' : result.stock)+'</td>';
-                                  row___Main += '<td style="text-align: right; color: orange;">'+(result.reserva == null ? '0.00' : result.reserva)+'</td>';
+                                  //row___Main += '<td style="text-align: right; color: orange;">'+(result.reserva == null ? '0.00' : result.reserva)+'</td>';
                                   row___Main += '</tr>';
                                   $('#tableArtPriceDetailMain > tbody').prepend(row___Main);
                                   rows__Main++;

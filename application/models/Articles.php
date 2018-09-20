@@ -116,7 +116,7 @@ class Articles extends CI_Model
 				$art['artMarginMayoristaIsPorcent'] = '';
 				$art['artMarginMinoristaIsPorcent'] = '';
 				$art['artEstado'] = 'AC';
-			  $art['subrId']	= '';
+			  $art['rubId']	= '';
         $art['artMinimo']	= '';
         $art['marcaId'] = '';
 				$data['article'] = $art;
@@ -153,7 +153,7 @@ class Articles extends CI_Model
             $marginMiP 		= $data['margPmi'];
             $status 			= $data['status'];
             $code 				= $data['code'];
-            $subrId 			=	$data['subrId'];
+            $rubId 			=	$data['rubId'];
             $marcaId 			=	$data['marcaId'];
             $artMinimo 		=	$data['artMinimo'];
 
@@ -165,7 +165,7 @@ class Articles extends CI_Model
 					 'artMarginMinoristaIsPorcent' 	=> ($marginMiP === 'true'),
 				   'artEstado' 						=> $status,
 					 'artMinimo'						=> $artMinimo,
-					 'subrId'								=> $subrId,
+					 'rubId'								=> $rubId,
 					 'artMarginMayorista'		=> $marginMa,
 					 'artMarginMayoristaIsPorcent' 	=> ($marginMaP === 'true'),
 					 'artCosteIsDolar'			=> ($priceIsDolar === 'true'),
