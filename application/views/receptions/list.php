@@ -52,9 +52,9 @@
                         echo '<i class="fa fa-fw fa-ban" style="color: #dd4b39 ; cursor: pointer; margin-left: 15px;" onclick="LoadRec('.$r['recId'].',\'Disc\')"></i>';
                       }
 
-                    if (strpos($permission,'View') !== false) {
+                    
                       echo '<i class="fa fa-fw fa-search" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" onclick="LoadRec('.$r['recId'].',\'View\')"></i>';
-                    }
+                    
 
                     echo '</td>';
                     echo '<td>'.str_pad($r['recId'], 4, "0", STR_PAD_LEFT).'</td>';

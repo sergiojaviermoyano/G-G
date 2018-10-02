@@ -72,6 +72,7 @@ function BuscarArticleNoPrice(){
                                 row__ += 'onClick="seleccionarArticleNoPrice('+result.artId+', \''+result.artDescription+'\')"></i></td>';
                                 row__ += '<td width="15%">'+result.artBarcode+'</td>';
                                 row__ += '<td>'+result.artDescription+'</td>';
+                                row__ += '<td>'+result.descripcion+'</td>';
                                 row__ += '<td style="display: none">'+result.artId+'</td>';
                                 row__ += '</tr>';
                                 $('#tableArtNoPriceDetail > tbody').prepend(row__);
@@ -125,7 +126,7 @@ function BuscarArticleNoPrice(){
       if(code == 13){//Seleccionado
         removeStyle.css('background-color', 'white');
         seleccionarArticleNoPrice(
-                          $('#tableArtNoPriceDetail tbody tr:nth-child('+row_+') td:nth-child(4)')[0].innerHTML,
+                          $('#tableArtNoPriceDetail tbody tr:nth-child('+row_+') td:nth-child(5)')[0].innerHTML,
                           $('#tableArtNoPriceDetail tbody tr:nth-child('+row_+') td:nth-child(3)')[0].innerHTML
                         );
       }

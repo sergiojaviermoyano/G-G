@@ -288,13 +288,10 @@ class Boxs extends CI_Model
 
 			$html = '<table width="100%" style="font-family: Impact, Charcoal, sans-serif; font-size: 15px;">';
 			$html .= '	<tr>
-
-							<td style="text-align: center; font-family: Impact, Charcoal, sans-serif;" >
-								<h1 style="font-size: 55px; color: #72324a;" >ADOLFO FERNANDEZ </h1>
-
-								<strong>Soluciones Electronicas<br>
-								<i>Fray Justo Santa Maria de Oro 489<br>
-								Tel. 496-3903 - Cel. 154514219<br>
+							<td style="text-align: center; font-family: Impact, Charcoal, sans-serif;"  colspan="2">
+								<h1 style="font-size: 55px; color: #72324a;" >G & G </h1><br>
+								<i>Avenida de los Rios<br>
+								Tel. 496-XXXX - Cel. 154XXXXX<br>
 								C.P. 5442 Caucete - San Juan </i>
 							</td>
 						</tr>';

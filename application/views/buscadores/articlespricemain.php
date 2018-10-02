@@ -75,6 +75,7 @@ function BuscarArticlePriceMain(){
                                   */
                                   row___Main += '<td>'+result.artBarcode+'</td>';
                                   row___Main += '<td>'+result.artDescription+'</td>';
+                                  row___Main += '<td style="text-align: left;">'+result.descripcion+'</td>';
                                   row___Main += '<td style="text-align: right"> $ ' + calcularPrecioInternoMain(result).toFixed(2) + '</td>';
                                   row___Main += '<td style="display: none">'+result.artId+'</td>';
                                   row___Main += '<td style="text-align: right">'+(result.stock == null ? '0.00' : result.stock)+'</td>';

@@ -210,8 +210,9 @@ class Articles extends CI_Model
 
 		$articles = array();
 
-		$this->db->select('artId, artDescription, artBarcode');
+		$this->db->select('artId, artDescription, artBarcode, descripcion');
 		$this->db->from('articles');
+		$this->db->join('marcaart as m', 'm.id = marcaId', 'inner');
 		$this->db->like('artDescription', $str, 'both');
 		$this->db->or_like('artBarCode', $str, 'both');
 		$this->db->where(array('artEstado'=>'AC'));
@@ -320,8 +321,9 @@ class Articles extends CI_Model
 		//-----------------------------------------
 		$articles = array();
 
-		$this->db->select('artId, artDescription, artBarcode, artCoste, artMarginMinorista, artMarginMinoristaIsPorcent, artCosteIsDolar, \''.floatval($cotizacion).'\' as dolar, (select sum(stkCant) from stock where stock.artId = articles.artId) as stock, (select sum(stkCant) from stockreserva where stockreserva.artId = articles.artId) as reserva');
+		$this->db->select('artId, artDescription, artBarcode, artCoste, artMarginMinorista, artMarginMinoristaIsPorcent, artCosteIsDolar, \''.floatval($cotizacion).'\' as dolar, (select sum(stkCant) from stock where stock.artId = articles.artId) as stock, descripcion');
 		$this->db->from('articles');
+		$this->db->join('marcaart as m', 'm.id = marcaId', 'inner');
 		$this->db->like('artDescription', $str, 'both');
 		$this->db->or_like('artBarCode', $str, 'both');
 		$this->db->where(array('artEstado'=>'AC'));
