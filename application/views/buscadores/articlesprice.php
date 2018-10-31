@@ -74,6 +74,7 @@ function BuscarArticlePrice(){
                                 row___ += 'onClick="seleccionarArticlePrice(' + result.artId + ', \'' + result.artDescription + '\', ' + calcularPrecioInterno(result) + ')"></i></td>';
                                 row___ += '<td>'+result.artBarcode+'</td>';
                                 row___ += '<td>'+result.artDescription+'</td>';
+                                row___ += '<td>'+result.descripcion+'</td>';
                                 row___ += '<td style="text-align: right"> $ ' + calcularPrecioInterno(result).toFixed(2) + '</td>';
                                 row___ += '<td style="display: none">'+result.artId+'</td>';
                                 row___ += '<td style="text-align: right">'+(result.stock == null ? '0.00' : result.stock)+'</td>';
@@ -138,9 +139,9 @@ $('#buscadorArticlesPrice').on('hidden.bs.modal', function() {
       if(code == 13){//Seleccionado
         removeStyle.css('background-color', 'white');
         seleccionarArticlePrice(
-                          $('#tableArtPriceDetail tbody tr:nth-child('+row__+') td:nth-child(5)')[0].innerHTML,
+                          $('#tableArtPriceDetail tbody tr:nth-child('+row__+') td:nth-child(6)')[0].innerHTML,
                           $('#tableArtPriceDetail tbody tr:nth-child('+row__+') td:nth-child(3)')[0].innerHTML,
-                          ($('#tableArtPriceDetail tbody tr:nth-child('+row__+') td:nth-child(4)')[0].innerHTML).replace('$', '').trim()
+                          ($('#tableArtPriceDetail tbody tr:nth-child('+row__+') td:nth-child(5)')[0].innerHTML).replace('$', '').trim()
                         );
       }
 

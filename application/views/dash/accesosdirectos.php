@@ -13,7 +13,7 @@
       </div>
     </div>
   -->
-<!-- Habilitar esta !!!!
+
     <div class="col-xs-4">
       <div class="info-box" style="cursor: pointer" onClick="cargarView('sale', 'minorista', '')">
         <span class="info-box-icon bg-green"><i class="fa fa-fw fa-cart-plus"></i></span>
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-  -->
+
   <!--
     <div class="col-xs-4">
       <div class="info-box" style="cursor: pointer" onClick="cargarView('sale', 'preventa')">

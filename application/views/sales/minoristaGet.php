@@ -1,4 +1,4 @@
-<input type="hidden" id="oId" value="<?php echo $order['order']['oId'];?>"
+<input type="hidden" id="oId" value="<?php echo $order['order']['oId'];?>">
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -721,7 +721,7 @@ $('#btnServiceEfectivo').click(function(){
       WaitingOpen('Buscando Cliente');
       $.ajax({
             type: 'POST',
-            data: { id : <?php echo $order['order']['order']['cliId'];?> },
+            data: { id : <?php echo $order['order']['cliId'];?> },
         url: 'index.php/customer/findCustomerId',
         success: function(result){
                       WaitingClose();

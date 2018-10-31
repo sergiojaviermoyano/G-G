@@ -482,15 +482,18 @@ class Sales extends CI_Model
 
 	public function getSaleMinorista ( $data = null){
 
-		$this->db->select('*,DATE_FORMAT(oFecha, "%d-%m-%Y %H:%i") as fecha');
+		$this->db->select('*,DATE_FORMAT(oFecha, "%d-%m-%Y %H:%i") as fecha, clientes.cliNombre, clientes.cliApellido');
 		$this->db->order_by('oId','desc');
 		$this->db->where(array('oEsMayorista'=>0,'oEsPlanReserva'=>0));
 		if($data['search']['value']!=''){
 			$this->db->where('oId',$data['search']['value']);
 			$this->db->or_like('DATE_FORMAT(oFecha, "%d-%m-%Y %H:%i")',$data['search']['value']);
+			$this->db->or_like('Concat(cliApellido, \' \', cliNombre)', $data['search']['value']);
 		}
 		$this->db->limit($data['length'],$data['start']);
-		$query = $this->db->get('orden');
+		$this->db->from('orden');
+		$this->db->join('clientes', 'clientes.cliId = orden.cliId');
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 
@@ -502,9 +505,13 @@ class Sales extends CI_Model
 		if($data['search']['value']!=''){
 			$this->db->where('oId',$data['search']['value']);
 			$this->db->or_like('DATE_FORMAT(oFecha, "%d-%m-%Y %H:%i")',$data['search']['value']);
-			$this->db->limit($data['length'],$data['start']);
+			$this->db->or_like('Concat(cliApellido, \' \', cliNombre)', $data['search']['value']);
+			
 		}
-		$query = $this->db->get('orden');
+		$this->db->limit($data['length'],$data['start']);
+		$this->db->from('orden');
+		$this->db->join('clientes', 'clientes.cliId = orden.cliId');
+		$query = $this->db->get();
 		return $query->num_rows();
 	}
 
@@ -603,7 +610,7 @@ class Sales extends CI_Model
 			$result['lista_de_precios'] = $query->row_array();
 
 			$sql="select od.*, a.*,
-			(SELECT r.rubDescripcion FROM rubros as r where r.rubId=a.subrId ) as rubro,
+			(SELECT r.rubDescripcion FROM rubros as r where r.rubId=a.rubId ) as rubro,
 			(SELECT m.descripcion FROM marcaart  as m where a.marcaId=m.id ) as marca
 			from ordendetalle as od LEFT OUTER JOIN articles as a ON od.artId=a.artId where oId='".$data['id']."';";
 
@@ -620,30 +627,32 @@ class Sales extends CI_Model
 			$pages=count($result['orden_detalle'])/20;
 			
 			$html = '
-			<table style="width:100%;  border-spacing: 5px;    border-collapse: separate; color: #3c3c3c; page-break-after: avoid;">
+			<table style="font-family: helvetica;width:100%;  border-spacing: 5px;    border-collapse: separate; color: #3c3c3c; page-break-after: avoid;">
 				<tr style="border:2px solid #3c3c3c !important; margin:0px auto;">
-					<td colspan=3 style="border:2px solid #3c3c3c !important; margin:0px auto; border-radius: 10px;  text-align:center ">
-						<h1 style="font-size:30px !important; text-align:center; width:100%; padding-botton:0px;     margin: 0px auto;">
+					<td style="border:2px solid #3c3c3c !important; margin:0px auto; border-radius: 10px;  text-align:center; width:48%;">
+						<h1 style="font-size:50px !important; text-align:center; width:100%; padding-botton:0px; margin: 0px auto;">
 						G&G
-							<br><span style="width:100%; text-align:right; padding-top:0px; font-size:13px !important;">Descripcion de Negocio</span>
 						</h1>
-						<p style="text-align:center; width:100%;  margin: 0px auto;">Avenida de los Rios 000 </p>
-						<p style="text-align:center; width:100%; margin: 0px auto;">C.P. 5442 Caucete - San Juan - Tel. 000-00000 - Cel. 000000000</p>
+						<strong><span style="width:100%; text-align:right; padding-top:0px; font-size:10px !important;">SERVICIOS ELÉCTRICOS</span></strong>
+						<p style="text-align:center; width:100%;  margin: 0px auto; font-size:10px !important;">J.M DE LOS RIOS 701 - C.P. 5442</p>
+						<p style="text-align:center; width:100%; margin: 0px auto; font-size:10px !important;">Caucete - San Juan</p>
 					</td>
-				</tr>
-				<tr style="border:2px solid #3c3c3c !important; margin:0px auto;">
-					<td colspan=3 style="border:2px solid #3c3c3c !important; margin:0px auto; border-radius: 10px;  text-align:left; padding:5px;">
+					<td style="width:2%;">
+					</td>
+					<td style="border:2px solid #3c3c3c !important; margin:0px auto; border-radius: 10px;  text-align:center;width:50%;">
+						<h1 style="font-size:20px !important; text-align:center; width:100%; padding-botton:0px;     margin: 0px auto;">
+						PRESUPUESTO
+						</h1><br>
+						Fecha
 						<table style="width:100%;">
 							<tr style="text-align:center; font-size:18px; font-weight:bold; color:#000000;">
-								<td style="width:10% !important; border:2px solid #3c3c3c !important; padding-top:5px; height:10px;">'.$fecha[0].'</td>
-								<td style="width:10% !important; border:2px solid #3c3c3c !important; padding-top:5px; height:10px">'.$fecha[1].'</td>
-								<td style="width:10% !important; border:2px solid #3c3c3c !important; padding-top:5px; height:10px">'.$fecha[2].'</td>
-								<td style="width:70% !important; border:2px solid #3c3c3c !important; padding-top:5px; height:10px; font-size:16px;">
-									<span style="width:100%; font-size:13px;">NO VALIDO COMO FACTURA</span> <br>
-									PRESUPUESTO VALIDO POR 15 DIAS
-								</td>
+								<td style="border:2px solid #3c3c3c !important; padding:5px; height:10px; width: 15px;">'.$fecha[0].'</td>
+								<td style="border:2px solid #3c3c3c !important; padding:5px; height:10px; width: 15px;">'.$fecha[1].'</td>
+								<td style="border:2px solid #3c3c3c !important; padding:5px; height:10px; width: 15px;">'.$fecha[2].'</td>
 							</tr>
 						</table>
+						<p style="text-align:right; width:100%;  margin: 5px auto;"><strong>264-4360638</strong> </p>
+						<p style="text-align:right; width:100%; margin: 5px auto;"><strong>264-4431494</strong></p>
 					</td>
 				</tr>
 
@@ -718,10 +727,10 @@ class Sales extends CI_Model
 				
 				$html.='<table style="width:100%;  border-spacing: 5px;    border-collapse: separate; color: #3c3c3c; page-break-after: avoid;">				
 				<tr style="border:2px solid #3c3c3c !important; margin:0px auto;">
-					<td colspan="2" style="font-size:30px; text-align:right; padding: 0px;">
-						$
+					<td colspan="2" style="text-align:right; padding: 0px;">
+						<strong>DOCUMENTO NO VALIDO COMO FACTURA</strong> $
 					</td>
-					<td colspan="1" style="border:2px solid #3c3c3c !important; margin:0px auto; padding: 0px;border-radius: 10px; text-align:right; font-size:20px; color:#000000;">
+					<td style="border:2px solid #3c3c3c !important; margin:0px auto; padding: 0px;border-radius: 10px; text-align:right; font-size:20px; color:#000000;">
 					 '.number_format($importe_total, 2).'
 					</td>
 				</tr>
