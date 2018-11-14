@@ -626,8 +626,25 @@ class Sales extends CI_Model
 
 			$pages=count($result['orden_detalle'])/20;
 			
+			//var_dump(base_url().'assets/images/favicon.png');
 			$html = '
-			<table style="font-family: helvetica;width:100%;  border-spacing: 5px;    border-collapse: separate; color: #3c3c3c; page-break-after: avoid;">
+			<!DOCTYPE html>
+			<html lang="es">
+			<head>
+			    <meta charset="utf-8">
+			    <title>Presupuesto '.$data['id'].'</title>
+			    <style type="text/css">
+		      	#watermark { 
+		      			opacity: .1; 
+		      			background-repeat:no-repeat;
+						background-position: center center;
+		      			background-image: url(\'assets/images/favicon.jpg\');
+					}
+		    </style>
+		    </head>
+		    <body id="watermark">
+		    	<div>
+			<table style="font-family: helvetica;width:100%;  border-spacing: 5px;    border-collapse: separate; color: #3c3c3c; page-break-after: avoid; ">
 				<tr style="border:2px solid #3c3c3c !important; margin:0px auto;">
 					<td style="border:2px solid #3c3c3c !important; margin:0px auto; border-radius: 10px;  text-align:center; width:48%;">
 						<h1 style="font-size:50px !important; text-align:center; width:100%; padding-botton:0px; margin: 0px auto;">
@@ -670,12 +687,12 @@ class Sales extends CI_Model
 						</table>
 					</td>
 				</tr>
-				</table>';
+				</table></div>';
 				$next_page=0;
 				for( $i=0; $i<ceil($pages);$i++){					
 					
 					$rows=count($result['orden_detalle']);
-					$html.='<table style="width:100%;  border-spacing: 5px;    border-collapse: separate; color: #3c3c3c; page-break-after: avoid;">
+					$html.='<table style="width:100%;  border-spacing: 5px;    border-collapse: separate; color: #3c3c3c; page-break-after: avoid; ">
 						<tr style="border:2px solid #3c3c3c !important; margin:0px auto;">
 							<td colspan=3 style="border:2px solid #3c3c3c !important; margin:0px auto; border-radius: 10px;">
 								<table style="width:100%;  border-collapse: collapse; border: 0px;">';

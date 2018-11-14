@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title><?php echo Globals::getTitle();?> <?php echo Globals::getTitle2();?></title>
-    <link rel="shortcut icon" href="<?php  echo base_url();?>assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php  echo base_url();?>assets/images/favicon.ico" type="image/x-icon">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
@@ -124,6 +124,7 @@
     /*CSS3*/
     background:rgba(0,0,0,0.5); /*0.5 De Transparencia*/
   }
+
 </style>
 
 <script>

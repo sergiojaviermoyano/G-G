@@ -57,6 +57,13 @@
                 }
 
             ?>
+            <li style="bottom:0;">
+              <a class="footer" href="http://www.indevla.com" target="_blank"> <!-- onClick="cargarView('dash', 'calendar', '')"-->
+                <i>
+                  <img src="assets/images/favicon.ico" width="20px;">
+                </i> <span><img src="assets/images/footer2.png" width="150px"></span>
+              </a>
+            </li>
         </ul>
       </section>
     </aside>
